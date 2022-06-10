@@ -1,12 +1,16 @@
-import './styles.css';
 import { ROWS_OF_LETTERS } from './assets/letters';
+import { pickOneWord } from './utilities/pickOneWord';
+
+import './styles.css';
 
 const NUMBER_OF_WORDS = 6;
 const NUMBER_OF_LETTERS = 5;
+const secretWord = pickOneWord();
 
 function init() {
 	render();
 	listeners();
+	console.log(secretWord);
 }
 
 function renderGameBoard() {
