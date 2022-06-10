@@ -7,6 +7,7 @@ const NUMBER_OF_LETTERS = 5;
 function initialRender() {
 	renderGameBoard();
 	renderKeyBoard();
+	listeners();
 }
 
 function renderGameBoard() {
@@ -38,10 +39,21 @@ function renderKeyBoard() {
 			button.textContent = letter;
 			button.classList.add('key');
 			button.setAttribute('data-key', letter);
+			button.setAttribute('type', 'button');
 			div.appendChild(button);
 		});
 
 		keyBoard.appendChild(div);
+	});
+}
+
+function listeners() {
+	const keyboard = document.querySelector('#keyboard');
+
+	keyboard.addEventListener('click', (event) => {
+		const key = event.target;
+		const keyValue = key.getAttribute('data-key');
+		console.log(keyValue);
 	});
 }
 
