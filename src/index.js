@@ -4,9 +4,8 @@ import { ROWS_OF_LETTERS } from './assets/letters';
 const NUMBER_OF_WORDS = 6;
 const NUMBER_OF_LETTERS = 5;
 
-function initialRender() {
-	renderGameBoard();
-	renderKeyBoard();
+function init() {
+	render();
 	listeners();
 }
 
@@ -57,4 +56,9 @@ function listeners() {
 	});
 }
 
-document.addEventListener('DOMContentLoaded', initialRender);
+function render() {
+	renderGameBoard();
+	renderKeyBoard();
+}
+
+document.addEventListener('DOMContentLoaded', init);
