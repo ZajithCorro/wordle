@@ -15,6 +15,7 @@ function addLeter(letter) {
 	const currentWord = document.querySelector('div[data-current-word]');
 	const currentLetter = currentWord.querySelector(`span:nth-child(${currentIndexLetter})`);
 
+	currentLetter.classList.add('pop');
 	currentLetter.textContent = letter;
 	currentIndexLetter++;
 }

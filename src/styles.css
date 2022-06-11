@@ -74,10 +74,29 @@ header h1 {
 }
 
 .game-board .word .letter {
-	display: block;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.75rem;
+	text-transform: uppercase;
 	width: 50px;
 	border: 1px solid rgb(58, 58, 60);
 	height: 100%;
+}
+
+.game-board .word .letter.pop {
+	animation: pop 0.3s ease-in-out 1 forwards;
+}
+
+@keyframes pop {
+	0%,
+	100% {
+		transform: scale(1);
+	}
+
+	50% {
+		transform: scale(1.15);
+	}
 }
 
 .keyboard {
