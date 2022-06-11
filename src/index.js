@@ -1,4 +1,5 @@
 import { ROWS_OF_LETTERS } from './assets/letters';
+import { pushLetter } from './components/word';
 import { pickOneWord } from './utilities/pickOneWord';
 
 import './styles.css';
@@ -10,7 +11,6 @@ const secretWord = pickOneWord();
 function init() {
 	render();
 	listeners();
-	console.log(secretWord);
 }
 
 function renderGameBoard() {
@@ -18,6 +18,7 @@ function renderGameBoard() {
 
 	for (let i = 0; i < NUMBER_OF_WORDS; i++) {
 		const row = document.createElement('div');
+		if (i === 0) row.setAttribute('data-current-word', true);
 		row.classList.add('word');
 
 		for (let j = 0; j < NUMBER_OF_LETTERS; j++) {
@@ -58,6 +59,8 @@ function listeners() {
 		const keyValue = key.getAttribute('data-key');
 		console.log(keyValue);
 	});
+
+	document.addEventListener('keyup', (event) => pushLetter(event.key));
 }
 
 function render() {
