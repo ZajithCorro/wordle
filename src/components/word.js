@@ -1,38 +1,53 @@
 import { validLetters } from '../constants/validLetters';
 
-let currentIndexLetter = 1;
+let numberOfLetters = 0;
 
 function pushLetter(letter) {
 	const key = letter.toLowerCase();
 
 	const isBackspace = key === 'backspace';
+	const isEnter = key === 'enter';
 	const isLetter = validLetters.includes(key);
-	const canAddLetter = currentIndexLetter <= 5;
+	const canAddLetter = numberOfLetters < 5;
 
+	isEnter && validateWord();
 	isBackspace && removeLetter();
 
 	if (isLetter && canAddLetter) addLeter(key);
+	console.log(numberOfLetters);
 }
 
 function addLeter(letter) {
+	const currentIndexLetter = numberOfLetters + 1;
 	const currentWord = document.querySelector('div[data-current-word]');
 	const currentLetter = currentWord.querySelector(`span:nth-child(${currentIndexLetter})`);
 
 	currentLetter.classList.add('pop');
 	currentLetter.textContent = letter;
-	currentIndexLetter++;
+	numberOfLetters++;
 }
 
 function removeLetter() {
-	if (currentIndexLetter <= 1) return;
+	if (numberOfLetters < 1) return;
 
-	const lastIndexLetter = currentIndexLetter - 1;
+	const lastIndexLetter = numberOfLetters;
 	const currentWord = document.querySelector('div[data-current-word]');
 	const currentLetter = currentWord.querySelector(`span:nth-child(${lastIndexLetter})`);
 
 	currentLetter.classList.remove('pop');
 	currentLetter.textContent = '';
-	currentIndexLetter--;
+	numberOfLetters--;
+}
+
+function validateWord() {
+	const currentWord = document.querySelector('div[data-current-word]');
+
+	if (numberOfLetters < 5) {
+		currentWord.classList.add('shake');
+		setTimeout(() => {
+			currentWord.classList.remove('shake');
+		}, 1000);
+	}
 }
 
 export { pushLetter };

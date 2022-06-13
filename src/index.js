@@ -1,11 +1,10 @@
-import { ROWS_OF_LETTERS } from './assets/letters';
+import { ROWS_OF_LETTERS } from './constants/letters';
+import { MAX_NUMBER_OF_LETTERS, MAX_NUMBER_OF_TRIES } from './constants/rules';
 import { pushLetter } from './components/word';
 import { pickOneWord } from './utilities/pickOneWord';
 
 import './styles.css';
 
-const NUMBER_OF_WORDS = 6;
-const NUMBER_OF_LETTERS = 5;
 const secretWord = pickOneWord();
 
 function init() {
@@ -16,12 +15,12 @@ function init() {
 function renderGameBoard() {
 	const gameBoard = document.querySelector('#game-board');
 
-	for (let i = 0; i < NUMBER_OF_WORDS; i++) {
+	for (let i = 0; i < MAX_NUMBER_OF_TRIES; i++) {
 		const row = document.createElement('div');
 		if (i === 0) row.setAttribute('data-current-word', true);
 		row.classList.add('word');
 
-		for (let j = 0; j < NUMBER_OF_LETTERS; j++) {
+		for (let j = 0; j < MAX_NUMBER_OF_LETTERS; j++) {
 			const span = document.createElement('span');
 			span.classList.add('letter');
 			row.appendChild(span);

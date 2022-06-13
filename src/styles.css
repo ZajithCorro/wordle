@@ -73,6 +73,10 @@ header h1 {
 	height: 100%;
 }
 
+.game-board .word.shake {
+	animation: shake 0.5s;
+}
+
 .game-board .word .letter {
 	display: flex;
 	justify-content: center;
@@ -96,6 +100,43 @@ header h1 {
 
 	50% {
 		transform: scale(1.15);
+	}
+}
+
+@keyframes shake {
+	0% {
+		transform: translate(3px) rotate(0deg);
+	}
+
+	10% {
+		transform: translate(-3px) rotate(0deg);
+	}
+	20% {
+		transform: translate(-3px) rotate(0deg);
+	}
+	30% {
+		transform: translate(3px) rotate(0deg);
+	}
+	40% {
+		transform: translate(3px) rotate(0deg);
+	}
+	50% {
+		transform: translate(-3px) rotate(0deg);
+	}
+	60% {
+		transform: translate(-3px) rotate(0deg);
+	}
+	70% {
+		transform: translate(3px) rotate(0deg);
+	}
+	80% {
+		transform: translate(-3px) rotate(0deg);
+	}
+	90% {
+		transform: translate(3px) rotate(0deg);
+	}
+	100% {
+		transform: translate(3px) rotate(0deg);
 	}
 }
 
