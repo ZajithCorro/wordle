@@ -4,7 +4,7 @@ import WORDS from '../constants/words';
 let numberOfLetters = 0;
 const word = [];
 
-function pushLetter(letter) {
+function pushLetter(letter, secretWord) {
 	const key = letter.toLowerCase();
 
 	const isBackspace = key === 'backspace';
@@ -12,7 +12,7 @@ function pushLetter(letter) {
 	const isLetter = validLetters.includes(key);
 	const canAddLetter = numberOfLetters < 5;
 
-	isEnter && validateWord();
+	isEnter && validateWord(secretWord);
 	isBackspace && removeLetter();
 
 	if (isLetter && canAddLetter) addLeter(key);
@@ -42,11 +42,12 @@ function removeLetter() {
 	word.pop();
 }
 
-function validateWord() {
+function validateWord(secretWord) {
 	const currentWord = document.querySelector('div[data-current-word]');
-	const joinedWord = word.join('');
+	const joinedWord = word.join('').toLowerCase();
+	const isNotLongEnough = numberOfLetters < 5;
 
-	if (numberOfLetters < 5) {
+	if (isNotLongEnough) {
 		currentWord.classList.add('shake');
 		setTimeout(() => {
 			currentWord.classList.remove('shake');
@@ -55,7 +56,9 @@ function validateWord() {
 		return;
 	}
 
-	if (!WORDS.includes(joinedWord)) {
+	const existWord = WORDS.includes(joinedWord);
+
+	if (!existWord) {
 		currentWord.classList.add('shake');
 		setTimeout(() => {
 			currentWord.classList.remove('shake');
@@ -63,6 +66,49 @@ function validateWord() {
 		}, 500);
 		return;
 	}
+
+	evaluateWord(secretWord);
+
+	nextWord();
+}
+
+function nextWord() {
+	const currentWord = document.querySelector('div[data-current-word]');
+	const nextWord = currentWord.nextElementSibling;
+
+	if (nextWord) {
+		currentWord.removeAttribute('data-current-word');
+		nextWord.setAttribute('data-current-word', 'true');
+		numberOfLetters = 0;
+		word.length = 0;
+	}
+
+	return;
+}
+
+function evaluateWord(secretWord) {
+	const secretLetters = secretWord.split('');
+	const currentWord = document.querySelector('div[data-current-word]');
+
+	word.forEach((letter, index) => {
+		const currentLetter = currentWord.querySelector(`span:nth-child(${index + 1})`);
+		const keyboardKey = document.querySelector(`button[data-key="${letter}"]`);
+
+		if (secretLetters[index] === letter) {
+			currentLetter.classList.add('correct');
+			keyboardKey.classList.add('correct');
+			return;
+		}
+
+		if (secretLetters.includes(letter)) {
+			currentLetter.classList.add('present');
+			keyboardKey.classList.add('present');
+			return;
+		}
+
+		currentLetter.classList.add('absent');
+		keyboardKey.classList.add('absent');
+	});
 }
 
 export { pushLetter };

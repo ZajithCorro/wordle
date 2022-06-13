@@ -8,10 +8,16 @@
 
 :root {
 	--color-letters: black;
+
 	--background-color: #fff;
 	--key-bg: #d3d6da;
 	--max-width: 1200px;
 	--spacer: 0.5rem;
+
+	--color-absent-letter: #787c7e;
+	--color-present-letter: #c9b458;
+	--color-correct-letter: #6aaa64;
+	--color-error-letter: #bb3429;
 }
 
 html {
@@ -92,6 +98,54 @@ header h1 {
 	animation: pop 0.3s ease-in-out 1 forwards;
 }
 
+.keyboard {
+	padding: 1rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 0.75rem;
+	max-width: 520px;
+	margin: 0 auto;
+	width: 100%;
+}
+
+.keyboard .keyboard-row {
+	display: flex;
+	justify-content: center;
+	gap: 0.5rem;
+}
+
+.key {
+	background-color: var(--key-bg);
+	appearance: none;
+	border: none;
+	text-transform: uppercase;
+	border-radius: 0.375rem;
+	line-height: 1.2rem;
+	flex-grow: 1;
+	height: 56px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+.correct {
+	background-color: var(--color-correct-letter);
+}
+
+.error {
+	background-color: var(--color-error-letter);
+}
+
+.present {
+	background-color: var(--color-present-letter);
+}
+
+.absent {
+	background-color: var(--color-absent-letter);
+}
+
 @keyframes pop {
 	0%,
 	100% {
@@ -140,41 +194,10 @@ header h1 {
 	}
 }
 
-.keyboard {
-	padding: 1rem;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	gap: 0.75rem;
-	max-width: 520px;
-	margin: 0 auto;
-	width: 100%;
-}
-
-.keyboard .keyboard-row {
-	display: flex;
-	justify-content: center;
-	gap: 0.5rem;
-}
-
-.keyboard .key {
-	background-color: var(--key-bg);
-	appearance: none;
-	border: none;
-	text-transform: uppercase;
-	border-radius: 0.375rem;
-	line-height: 1.2rem;
-	flex-grow: 1;
-	height: 56px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	cursor: pointer;
-}
-
 @media (prefers-color-scheme: dark) {
 	:root {
 		--color-letters: #fff;
 		--background-color: rgb(18, 18, 19);
+		--color-absent-letter: #3a3a3c;
 	}
 }

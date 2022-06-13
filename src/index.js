@@ -8,6 +8,7 @@ import './styles.css';
 const secretWord = pickOneWord();
 
 function init() {
+	console.log(secretWord);
 	render();
 	listeners();
 }
@@ -59,7 +60,7 @@ function listeners() {
 		console.log(keyValue);
 	});
 
-	document.addEventListener('keyup', (event) => pushLetter(event.key));
+	document.addEventListener('keyup', (event) => pushLetter(event.key, secretWord));
 }
 
 function render() {
