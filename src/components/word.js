@@ -1,4 +1,4 @@
-import { validLetters } from '../assets/validLetters';
+import { validLetters } from '../constants/validLetters';
 
 let currentIndexLetter = 1;
 
