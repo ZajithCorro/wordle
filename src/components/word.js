@@ -1,6 +1,8 @@
 import { validLetters } from '../constants/validLetters';
+import WORDS from '../constants/words';
 
 let numberOfLetters = 0;
+const word = [];
 
 function pushLetter(letter) {
 	const key = letter.toLowerCase();
@@ -14,7 +16,6 @@ function pushLetter(letter) {
 	isBackspace && removeLetter();
 
 	if (isLetter && canAddLetter) addLeter(key);
-	console.log(numberOfLetters);
 }
 
 function addLeter(letter) {
@@ -25,6 +26,7 @@ function addLeter(letter) {
 	currentLetter.classList.add('pop');
 	currentLetter.textContent = letter;
 	numberOfLetters++;
+	word.push(letter);
 }
 
 function removeLetter() {
@@ -37,16 +39,29 @@ function removeLetter() {
 	currentLetter.classList.remove('pop');
 	currentLetter.textContent = '';
 	numberOfLetters--;
+	word.pop();
 }
 
 function validateWord() {
 	const currentWord = document.querySelector('div[data-current-word]');
+	const joinedWord = word.join('');
 
 	if (numberOfLetters < 5) {
 		currentWord.classList.add('shake');
 		setTimeout(() => {
 			currentWord.classList.remove('shake');
-		}, 1000);
+			alert('The word must have 5 letters');
+		}, 500);
+		return;
+	}
+
+	if (!WORDS.includes(joinedWord)) {
+		currentWord.classList.add('shake');
+		setTimeout(() => {
+			currentWord.classList.remove('shake');
+			alert('The word is not valid');
+		}, 500);
+		return;
 	}
 }
 
