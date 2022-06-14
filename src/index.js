@@ -57,7 +57,9 @@ function listeners() {
 	keyboard.addEventListener('click', (event) => {
 		const key = event.target;
 		const keyValue = key.getAttribute('data-key');
-		console.log(keyValue);
+		const finalKey = keyValue.replace('back', 'backspace');
+
+		pushLetter(finalKey, secretWord);
 	});
 
 	document.addEventListener('keyup', (event) => pushLetter(event.key, secretWord));
