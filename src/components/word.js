@@ -96,18 +96,21 @@ function evaluateWord(secretWord) {
 
 		if (secretLetters[index] === letter) {
 			currentLetter.classList.add('correct');
-			keyboardKey.classList.add('correct');
+			keyboardKey.removeAttribute('class');
+			keyboardKey.classList.add('key', 'correct');
 			return;
 		}
 
 		if (secretLetters.includes(letter)) {
 			currentLetter.classList.add('present');
-			keyboardKey.classList.add('present');
+			keyboardKey.removeAttribute('class');
+			keyboardKey.classList.add('key', 'present');
 			return;
 		}
 
 		currentLetter.classList.add('absent');
-		keyboardKey.classList.add('absent');
+		keyboardKey.removeAttribute('class');
+		keyboardKey.classList.add('key', 'absent');
 	});
 }
 
