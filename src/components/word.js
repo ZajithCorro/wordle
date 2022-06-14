@@ -2,9 +2,12 @@ import { validLetters } from '../constants/validLetters';
 import WORDS from '../constants/words';
 
 let numberOfLetters = 0;
+let isEnded = false;
 const word = [];
 
 function pushLetter(letter, secretWord) {
+	if (isEnded) return;
+
 	const key = letter.toLowerCase();
 
 	const isBackspace = key === 'backspace';
@@ -67,9 +70,12 @@ function validateWord(secretWord) {
 		return;
 	}
 
-	evaluateWord(secretWord);
+	const isEnded = evaluateWord(secretWord);
 
-	nextWord();
+	if (!isEnded) {
+		nextWord();
+		return;
+	}
 }
 
 function nextWord() {
@@ -112,6 +118,12 @@ function evaluateWord(secretWord) {
 		keyboardKey.removeAttribute('class');
 		keyboardKey.classList.add('key', 'absent');
 	});
+
+	return checkIfEnded(secretWord);
+}
+
+function checkIfEnded(secretWord) {
+	return word.join('').toLowerCase() === secretWord.toLowerCase();
 }
 
 export { pushLetter };
