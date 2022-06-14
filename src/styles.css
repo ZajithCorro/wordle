@@ -83,15 +83,16 @@ header h1 {
 	animation: shake 0.5s;
 }
 
-.game-board .word .letter {
+.letter {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	font-size: 1.75rem;
 	text-transform: uppercase;
 	width: 50px;
-	border: 1px solid rgb(58, 58, 60);
+	border: 2px solid #e2e8f0;
 	height: 100%;
+	font-weight: bold;
 }
 
 .game-board .word .letter.pop {
@@ -128,22 +129,31 @@ header h1 {
 	justify-content: center;
 	align-items: center;
 	cursor: pointer;
+	font-weight: bold;
 }
 
 .correct {
 	background-color: var(--color-correct-letter);
+	color: #fff;
+	border: none;
 }
 
 .error {
 	background-color: var(--color-error-letter);
+	color: #fff;
+	border: none;
 }
 
 .present {
 	background-color: var(--color-present-letter);
+	color: #fff;
+	border: none;
 }
 
 .absent {
 	background-color: var(--color-absent-letter);
+	color: #fff;
+	border: none;
 }
 
 @keyframes pop {
